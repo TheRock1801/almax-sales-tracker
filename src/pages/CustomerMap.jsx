@@ -8,38 +8,53 @@ import { customers } from '../data/mockData'
 const ALMAX_BLUE = '#0099D6'
 
 function makeBrushIcon(w, shadow) {
-  // House painter's brush — bristles at top, handle tapers to map point at bottom
-  // Modelled on the reference image but in Almax blue throughout
-  const h = Math.round(w * 2.1)
+  // House painter's brush: flat top, brown bristles, blue painted tips, blue handle
+  // Handle tip at bottom = map anchor point
+  const h = Math.round(w * 1.875)
   return `<div style="filter:drop-shadow(${shadow})">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 100" width="${w}" height="${h}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 105" width="${w}" height="${h}">
 
-      <!-- BRISTLE FAN — wide at top, narrows to ferrule -->
-      <path d="M3 40 C5 30 10 18 16 10 C20 4 24 1 27 1 C30 1 34 4 38 10 C44 18 49 30 51 40 L42 46 L12 46 Z"
-        fill="${ALMAX_BLUE}" stroke="#005f8a" stroke-width="1.5" stroke-linejoin="round"/>
-      <!-- Bristle texture — lighter vertical streaks -->
-      <line x1="11" y1="36" x2="14" y2="46" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
-      <line x1="17" y1="26" x2="19" y2="46" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
-      <line x1="22" y1="18" x2="23" y2="46" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
-      <line x1="27" y1="14" x2="27" y2="46" stroke="rgba(255,255,255,0.3)"  stroke-width="2" stroke-linecap="round"/>
-      <line x1="32" y1="18" x2="31" y2="46" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
-      <line x1="37" y1="26" x2="35" y2="46" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
-      <line x1="43" y1="36" x2="40" y2="46" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
+      <!-- BRISTLES — flat-top trapezoid, wide at top, narrows to ferrule -->
+      <!-- Brown/tan body (full bristle shape) -->
+      <path d="M 2,8 L 54,8 L 42,52 L 14,52 Z"
+        fill="#C49A65" stroke="#7A5028" stroke-width="1.5" stroke-linejoin="round"/>
+
+      <!-- Blue paint on tips — top 38% of bristle height (y=8 to y=26) -->
+      <!-- At y=26: left=2+12*18/44≈6.9, right=54-12*18/44≈49.1 -->
+      <path d="M 2,8 L 54,8 L 49,26 L 7,26 Z" fill="${ALMAX_BLUE}"/>
+
+      <!-- Bristle texture lines (dark, run full height of bristle section) -->
+      <line x1="8"  y1="8"  x2="15" y2="52" stroke="rgba(0,0,0,0.13)" stroke-width="1.2"/>
+      <line x1="14" y1="8"  x2="19" y2="52" stroke="rgba(0,0,0,0.13)" stroke-width="1.2"/>
+      <line x1="20" y1="8"  x2="23" y2="52" stroke="rgba(0,0,0,0.13)" stroke-width="1.2"/>
+      <line x1="27" y1="8"  x2="27" y2="52" stroke="rgba(0,0,0,0.13)" stroke-width="1.2"/>
+      <line x1="33" y1="8"  x2="33" y2="52" stroke="rgba(0,0,0,0.13)" stroke-width="1.2"/>
+      <line x1="39" y1="8"  x2="37" y2="52" stroke="rgba(0,0,0,0.13)" stroke-width="1.2"/>
+      <line x1="45" y1="8"  x2="41" y2="52" stroke="rgba(0,0,0,0.13)" stroke-width="1.2"/>
+
+      <!-- Outline over bristle shape (on top of lines) -->
+      <path d="M 2,8 L 54,8 L 42,52 L 14,52 Z"
+        fill="none" stroke="#7A5028" stroke-width="1.5" stroke-linejoin="round"/>
+
+      <!-- Slightly uneven top edge — individual bristle tips -->
+      <path d="M 2,8 C 5,5 8,7 11,5 C 14,3 17,6 20,4 C 23,2 26,5 28,3 C 30,1 33,4 36,2 C 39,4 42,2 45,5 C 48,3 51,6 54,8"
+        fill="none" stroke="#7A5028" stroke-width="1.2" stroke-linecap="round"/>
 
       <!-- FERRULE — silver metal band -->
-      <rect x="12" y="44" width="30" height="5"  rx="1" fill="#B0BAC8"/>
-      <rect x="12" y="49" width="30" height="5"  rx="1" fill="#8A97A4"/>
-      <rect x="12" y="54" width="30" height="3"  rx="1" fill="#6B7880"/>
+      <rect x="13" y="51" width="30" height="5"  rx="1" fill="#C0CAD4"/>
+      <rect x="13" y="56" width="30" height="5"  rx="1" fill="#8A97A4"/>
+      <rect x="13" y="51" width="30" height="10" rx="1"
+        fill="none" stroke="#6B7880" stroke-width="1"/>
 
-      <!-- HANDLE — blue, tapers from ferrule down to a rounded point -->
-      <path d="M17 57 C15 65 14 76 16 86 C18 93 22 98 27 100 C32 98 36 93 38 86 C40 76 39 65 37 57 Z"
+      <!-- HANDLE — blue, tapered, rounded point at bottom (map anchor) -->
+      <path d="M 17,61 C 15,71 14,81 16,91 C 18,97 22,102 28,104 C 34,102 38,97 40,91 C 42,81 41,71 39,61 Z"
         fill="${ALMAX_BLUE}" stroke="#005f8a" stroke-width="1.5" stroke-linejoin="round"/>
-      <!-- Handle highlight — left side -->
-      <path d="M20 58 C18 66 18 76 19 84 C20 89 22 93 25 96 C23 92 22 86 21 79 C20 70 20 64 20 58 Z"
-        fill="rgba(255,255,255,0.22)"/>
-      <!-- Small oval detail near bottom of handle (like ref image) -->
-      <ellipse cx="27" cy="87" rx="4.5" ry="6" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-      <ellipse cx="27" cy="91"  rx="1.8" ry="1.8" fill="rgba(255,255,255,0.35)"/>
+      <!-- Handle left-side shine -->
+      <path d="M 20,62 C 18,71 18,80 19,88 C 20,94 22,98 25,101 C 23,96 22,90 21,83 C 20,74 20,67 20,62 Z"
+        fill="rgba(255,255,255,0.25)"/>
+      <!-- Oval grip detail near bottom -->
+      <ellipse cx="28" cy="91" rx="4" ry="5.5" fill="rgba(255,255,255,0.18)"/>
+      <ellipse cx="28" cy="94" rx="1.6" ry="1.6" fill="rgba(255,255,255,0.4)"/>
 
     </svg>
   </div>`
@@ -48,15 +63,15 @@ function makeBrushIcon(w, shadow) {
 const pinDefault = L.divIcon({
   html: makeBrushIcon(32, '0 3px 10px rgba(0,0,0,0.3)'),
   className: '',
-  iconSize: [32, 67],
-  iconAnchor: [16, 67],
+  iconSize: [32, 60],
+  iconAnchor: [16, 60],
 })
 
 const pinSelected = L.divIcon({
   html: makeBrushIcon(40, '0 4px 18px rgba(0,153,214,0.5)'),
   className: '',
-  iconSize: [40, 84],
-  iconAnchor: [20, 84],
+  iconSize: [40, 75],
+  iconAnchor: [20, 75],
 })
 
 // Only show Almax for now
