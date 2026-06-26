@@ -1,29 +1,9 @@
 import { useState } from 'react'
-import { Users, Phone, Mail, MapPin, FileText, CheckSquare, Info } from 'lucide-react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Users, Phone, Mail, MapPin, FileText, CheckSquare, Info, ArrowLeft } from 'lucide-react'
+import { customers } from '../data/mockData'
 
 const ALMAX = '#0099D6'
-
-const ALMAX_CUSTOMER = {
-  id: 1,
-  name: 'Almax Professional Painters Tools',
-  accountNo: 'ALMAX-0001',
-  address: '6b TY Duncan Road, Oamaru North, Oamaru 9494',
-  phone: '09 444 1234',
-  email: 'sales@almax.co.nz',
-  salesYTD: '$148,400',
-  lastVisit: '12 Jun 2026',
-  outstandingBalance: '$4,250.00',
-  creditLimit: '$20,000.00',
-  paymentTerms: '30 days',
-  notes: [
-    { id: 1, date: '12 Jun 2026', author: 'MarkJ', text: 'Discussed new roller product range — very interested in ALM-007 and ALM-009. Follow up next visit.' },
-    { id: 2, date: '28 May 2026', author: 'MarkJ', text: 'Delivered order #4521. All good, customer happy with delivery time.' },
-  ],
-  tasks: [
-    { id: 1, title: 'Follow up on recent order', due: '29 Jun 2026', status: 'Pending' },
-    { id: 2, title: 'Send updated pricing sheet', due: '28 Jun 2026', status: 'Pending' },
-  ],
-}
 
 const subTabs = [
   { key: 'dashboard', label: 'Dashboard', icon: Users },
@@ -97,7 +77,7 @@ function NotesTab({ customer }) {
         />
         <button style={{ marginTop: 10, padding: '12px', width: '100%', background: ALMAX, color: '#fff', border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Save Note</button>
       </div>
-      {customer.notes.map(n => (
+      {(customer.notes || []).map(n => (
         <div key={n.id} style={{ background: '#fff', borderRadius: 16, border: '1px solid #E8EDF4', padding: '14px 16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: ALMAX }}>{n.author}</span>
@@ -113,7 +93,7 @@ function NotesTab({ customer }) {
 function TasksTab({ customer }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      {customer.tasks.map(t => (
+      {(customer.tasks || []).map(t => (
         <div key={t.id} style={{ background: '#fff', borderRadius: 16, border: '1px solid #E8EDF4', padding: '14px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <p style={{ fontSize: 14, fontWeight: 600, color: '#0F172A', margin: '0 0 4px' }}>{t.title}</p>
@@ -128,10 +108,10 @@ function TasksTab({ customer }) {
 
 function AccountTab({ customer }) {
   const rows = [
-    ['Account No', customer.accountNo],
-    ['Payment Terms', customer.paymentTerms],
-    ['Credit Limit', customer.creditLimit],
-    ['Outstanding Balance', customer.outstandingBalance],
+    ['Account No', customer.accountNo || '—'],
+    ['Payment Terms', customer.paymentTerms || '—'],
+    ['Credit Limit', customer.creditLimit || '—'],
+    ['Outstanding Balance', customer.outstandingBalance || '—'],
     ['Address', customer.address],
     ['Phone', customer.phone],
     ['Email', customer.email],
@@ -150,16 +130,30 @@ function AccountTab({ customer }) {
 
 export default function Customer() {
   const [activeTab, setActiveTab] = useState('dashboard')
-  const [customerSelected] = useState(true)
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const customerId = location.state?.customerId
+  const customer = customerId
+    ? customers.find(c => c.id === customerId)
+    : null
+  const fromMap = !!customerId
 
   return (
     <div style={{ padding: '20px 16px 0' }}>
-      <div style={{ paddingTop: 4, paddingBottom: 4, marginBottom: 16 }}>
-        <p style={{ fontSize: 11, color: '#94A3B8', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>Almax Sales Tracker</p>
-        <h1 style={{ fontSize: 24, fontWeight: 800, color: '#0F172A', margin: '2px 0 0' }}>Customer</h1>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingTop: 4, paddingBottom: 4, marginBottom: 16 }}>
+        {fromMap && (
+          <button onClick={() => navigate(-1)} style={{ background: '#F4F7FB', border: '1px solid #E8EDF4', borderRadius: 10, width: 34, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+            <ArrowLeft size={16} style={{ color: '#64748B' }} />
+          </button>
+        )}
+        <div>
+          <p style={{ fontSize: 11, color: '#94A3B8', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>Almax Sales Tracker</p>
+          <h1 style={{ fontSize: 24, fontWeight: 800, color: '#0F172A', margin: '2px 0 0' }}>Customer</h1>
+        </div>
       </div>
 
-      {!customerSelected ? (
+      {!customer ? (
         <div style={{ background: '#fff', borderRadius: 20, border: '1px solid #E8EDF4', padding: '60px 24px', textAlign: 'center' }}>
           <Users size={48} style={{ color: '#E8EDF4', margin: '0 auto 16px', display: 'block' }} />
           <p style={{ fontSize: 15, color: '#94A3B8', margin: 0 }}>Select a customer from the header bar to get started.</p>
@@ -185,10 +179,10 @@ export default function Customer() {
           </div>
 
           <div style={{ paddingBottom: 24 }}>
-            {activeTab === 'dashboard' && <DashboardTab customer={ALMAX_CUSTOMER} />}
-            {activeTab === 'notes' && <NotesTab customer={ALMAX_CUSTOMER} />}
-            {activeTab === 'tasks' && <TasksTab customer={ALMAX_CUSTOMER} />}
-            {activeTab === 'account' && <AccountTab customer={ALMAX_CUSTOMER} />}
+            {activeTab === 'dashboard' && <DashboardTab customer={customer} />}
+            {activeTab === 'notes' && <NotesTab customer={customer} />}
+            {activeTab === 'tasks' && <TasksTab customer={customer} />}
+            {activeTab === 'account' && <AccountTab customer={customer} />}
           </div>
         </>
       )}

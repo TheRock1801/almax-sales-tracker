@@ -88,12 +88,31 @@ export const products = [
 export const categories = ['All Categories', 'Brushes', 'Rollers', 'Prep & Tape', 'Protective Gear', 'Sprayers', 'Accessories']
 
 export const customers = [
-  { id: 1, name: 'Ridge Field Freight', address: '10 Mackelvie Street, Grey Lynn, Auckland', phone: '093456789', email: 'contact@ridgefield.co.nz', lat: -36.862, lng: 174.745 },
-  { id: 2, name: 'Sierra Source Medical', address: '50 Ponsonby Road, Ponsonby, Auckland', phone: '092345678', email: 'info@sierrasource.co.nz', lat: -36.854, lng: 174.748 },
-  { id: 3, name: 'Golden Haven Corp', address: '105 Albert Street, Auckland CBD', phone: '091234567', email: 'hello@goldenhaven.co.nz', lat: -36.848, lng: 174.763 },
-  { id: 4, name: 'Pinnacle Cascade Co', address: '22 Broadway, Newmarket, Auckland', phone: '094567890', email: 'admin@pinnaclecascade.co.nz', lat: -36.870, lng: 174.776 },
-  { id: 5, name: 'Silver Gate Consulting', address: '1 Queen Street, Auckland CBD', phone: '095678901', email: 'info@silvergate.co.nz', lat: -36.843, lng: 174.767 },
-  { id: 6, name: 'Metro Isle International', address: '8 Shortland Street, Auckland CBD', phone: '096789012', email: 'contact@metroisle.co.nz', lat: -36.845, lng: 174.766 },
-  { id: 7, name: 'Highland Park Plastics', address: '5 Ti Rakau Drive, East Auckland', phone: '097890123', email: 'sales@highlandpark.co.nz', lat: -36.898, lng: 174.878 },
-  { id: 8, name: 'Liberty Source Holdings', address: '45 Victoria Street West, Auckland', phone: '098901234', email: 'info@libertysource.co.nz', lat: -36.849, lng: 174.757 },
+  {
+    id: 1,
+    name: 'Almax Professional Painters Tools',
+    accountNo: 'ALMAX-0001',
+    address: '6b TY Duncan Road, Oamaru North, Oamaru 9494',
+    phone: '03 434 5678',
+    email: 'sales@almax.co.nz',
+    lat: -45.0878,
+    lng: 170.9748,
+    salesYTD: '$148,400',
+    lastVisit: '12 Jun 2026',
+    nextCall: 'Today, 9:00 AM',
+    outstandingBalance: '$4,250.00',
+    creditLimit: '$20,000.00',
+    paymentTerms: '30 days',
+    notes: [
+      { id: 1, date: '12 Jun 2026', author: 'MarkJ', text: 'Discussed new roller product range — very interested in ALM-007 and ALM-009. Follow up next visit.' },
+      { id: 2, date: '28 May 2026', author: 'MarkJ', text: 'Delivered order #4521. All good, customer happy with delivery time.' },
+    ],
+    tasks: [
+      { id: 1, title: 'Follow up on recent order', due: '29 Jun 2026', status: 'Pending' },
+      { id: 2, title: 'Send updated pricing sheet', due: '28 Jun 2026', status: 'Pending' },
+    ],
+  },
+  { id: 2, name: 'Ridge Field Freight', accountNo: 'RIDG-0002', address: '10 Mackelvie Street, Grey Lynn, Auckland', phone: '093456789', email: 'contact@ridgefield.co.nz', lat: -36.862, lng: 174.745, salesYTD: '$95,000', lastVisit: '10 Jun 2026', nextCall: 'Tomorrow', outstandingBalance: '$1,200.00', creditLimit: '$10,000.00', paymentTerms: '30 days', notes: [], tasks: [] },
+  { id: 3, name: 'Sierra Source Medical', accountNo: 'SIER-0003', address: '50 Ponsonby Road, Ponsonby, Auckland', phone: '092345678', email: 'info@sierrasource.co.nz', lat: -36.854, lng: 174.748, salesYTD: '$175,000', lastVisit: '8 Jun 2026', nextCall: 'Next Week', outstandingBalance: '$0.00', creditLimit: '$15,000.00', paymentTerms: '20 days', notes: [], tasks: [] },
+  { id: 4, name: 'Golden Haven Corp', accountNo: 'GOLD-0004', address: '105 Albert Street, Auckland CBD', phone: '091234567', email: 'hello@goldenhaven.co.nz', lat: -36.848, lng: 174.763, salesYTD: '$240,000', lastVisit: '5 Jun 2026', nextCall: 'Today, 2:00 PM', outstandingBalance: '$8,500.00', creditLimit: '$25,000.00', paymentTerms: '30 days', notes: [], tasks: [] },
 ]
