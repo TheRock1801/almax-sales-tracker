@@ -7,31 +7,41 @@ import { customers } from '../data/mockData'
 
 const ALMAX_BLUE = '#0099D6'
 
-// Create icons once at module level — never recreated, no click issues
-const pinDefault = L.divIcon({
-  html: `<div style="filter:drop-shadow(0 3px 6px rgba(0,0,0,0.28))">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 52" width="34" height="44">
-      <circle cx="20" cy="20" r="18" fill="${ALMAX_BLUE}" stroke="white" stroke-width="3"/>
-      <path d="M20 52 C20 52 8 34 8 20 A12 12 0 0 1 32 20 C32 34 20 52 20 52Z" fill="${ALMAX_BLUE}" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
-      <circle cx="20" cy="20" r="6" fill="white"/>
+function makeBrushIcon(size, shadow) {
+  // Paintbrush pointing down — tip touches the map location
+  const w = size
+  const h = Math.round(size * 1.9)
+  return `<div style="filter:drop-shadow(${shadow})">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 60" width="${w}" height="${h}">
+      <!-- Wooden handle -->
+      <rect x="13" y="0" width="6" height="24" rx="3" fill="#D4903A"/>
+      <!-- Handle shine -->
+      <rect x="14.5" y="2" width="2" height="19" rx="1" fill="rgba(255,255,255,0.28)"/>
+      <!-- Ferrule (silver band) -->
+      <rect x="11" y="23" width="10" height="7" rx="2" fill="#94A3B8"/>
+      <rect x="11" y="23" width="10" height="3" rx="1.5" fill="#B8C2CC"/>
+      <!-- Bristle body — tapers to a tip -->
+      <path d="M11 30 L8 42 L16 59 L24 42 L21 30 Z" fill="${ALMAX_BLUE}"/>
+      <!-- Bristle highlight -->
+      <path d="M14 30 L12 40 L16 55 L16 30 Z" fill="rgba(255,255,255,0.18)"/>
+      <!-- Dark tip -->
+      <path d="M14 52 L16 59 L18 52 Q16 57 14 52 Z" fill="#006FA3"/>
     </svg>
-  </div>`,
+  </div>`
+}
+
+const pinDefault = L.divIcon({
+  html: makeBrushIcon(30, '0 3px 8px rgba(0,0,0,0.3)'),
   className: '',
-  iconSize: [34, 44],
-  iconAnchor: [17, 44],
+  iconSize: [30, 57],
+  iconAnchor: [15, 57],
 })
 
 const pinSelected = L.divIcon({
-  html: `<div style="filter:drop-shadow(0 4px 14px rgba(0,153,214,0.55))">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 52" width="44" height="56">
-      <circle cx="20" cy="20" r="18" fill="${ALMAX_BLUE}" stroke="white" stroke-width="3"/>
-      <path d="M20 52 C20 52 8 34 8 20 A12 12 0 0 1 32 20 C32 34 20 52 20 52Z" fill="${ALMAX_BLUE}" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
-      <circle cx="20" cy="20" r="7" fill="white"/>
-    </svg>
-  </div>`,
+  html: makeBrushIcon(38, '0 4px 16px rgba(0,153,214,0.55)'),
   className: '',
-  iconSize: [44, 56],
-  iconAnchor: [22, 56],
+  iconSize: [38, 72],
+  iconAnchor: [19, 72],
 })
 
 // Only show Almax for now
