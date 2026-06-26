@@ -317,7 +317,7 @@ function RouteMap({ appointments }) {
       ))}
 
       <p style={{ position: 'absolute', bottom: 8, right: 10, fontSize: 10, color: '#94A3B8' }}>
-        OpenStreetMap · Leaflet
+        CARTO · Leaflet
       </p>
     </div>
   )
