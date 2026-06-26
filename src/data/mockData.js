@@ -54,6 +54,39 @@ export const topCustomers = [
   { name: 'Ridge Field Freight', sales: 95000 },
 ]
 
+export const detailedTasks = [
+  { id: 1, title: 'Follow up on recent order', customer: 'Silver Gate Consulting', status: 'Pending', type: 'TASK', dueDate: '29 Jun 2026', assignedTo: 'MarkJ', createdBy: 'MarkJ', createdDate: '22 Jun 2026' },
+  { id: 2, title: 'Check stock requirements', customer: 'Ridge Field Freight', status: 'Pending', type: 'TASK', dueDate: '30 Jun 2026', assignedTo: 'MarkJ', createdBy: 'MarkJ', createdDate: '23 Jun 2026' },
+  { id: 3, title: 'Introduce new product range', customer: 'Lincoln Source Plastics', status: 'Pending', type: 'TASK', dueDate: '2 Jul 2026', assignedTo: 'MarkJ', createdBy: 'MarkJ', createdDate: '24 Jun 2026' },
+  { id: 4, title: 'Send updated pricing sheet', customer: 'Golden Haven Corp', status: 'Pending', type: 'TASK', dueDate: '28 Jun 2026', assignedTo: 'MarkJ', createdBy: 'MarkJ', createdDate: '20 Jun 2026' },
+  { id: 5, title: 'Confirm delivery address', customer: 'Metro Isle International', status: 'Complete', type: 'TASK', dueDate: '25 Jun 2026', assignedTo: 'MarkJ', createdBy: 'MarkJ', createdDate: '18 Jun 2026' },
+  { id: 6, title: 'Product demo scheduled', customer: 'Pinnacle Cascade Co', status: 'Complete', type: 'NOTE', dueDate: '24 Jun 2026', assignedTo: 'MarkJ', createdBy: 'MarkJ', createdDate: '15 Jun 2026' },
+]
+
+export const prospects = [
+  { id: 1, accountNo: 'ALPI-000001', name: 'Alpine Auto Parts', phone: '03 434 5678', email: 'info@alpineauto.co.nz', address: '12 Thames Street, Oamaru', status: 'Contacted' },
+  { id: 2, accountNo: 'NORT-000001', name: 'North Shore Plumbing Ltd', phone: '09 441 2345', email: 'admin@nspltd.co.nz', address: '45 Archers Road, Auckland', status: 'New' },
+  { id: 3, accountNo: 'SOUT-000002', name: 'Southern Cross Painters', phone: '03 477 8901', email: 'contact@scpainters.co.nz', address: '8 Andersons Bay Rd, Dunedin', status: 'Qualified' },
+  { id: 4, accountNo: 'WGTN-000003', name: 'Wellington Decorating Co', phone: '04 385 6712', email: 'hello@wdc.co.nz', address: '22 Cuba Street, Wellington', status: 'New' },
+]
+
+export const products = [
+  { code: 'ALM-001', name: 'Premium Paint Brush Set 5pc', category: 'Brushes', price: 45.99, unit: 'Set' },
+  { code: 'ALM-002', name: 'Roller Kit 9" with Tray', category: 'Rollers', price: 28.50, unit: 'Kit' },
+  { code: 'ALM-003', name: 'Masking Tape 24mm x 50m', category: 'Prep & Tape', price: 6.90, unit: 'Roll' },
+  { code: 'ALM-004', name: 'Drop Cloth 3.6m x 2.7m', category: 'Protective Gear', price: 19.95, unit: 'Each' },
+  { code: 'ALM-005', name: 'Angled Sash Brush 2"', category: 'Brushes', price: 12.50, unit: 'Each' },
+  { code: 'ALM-006', name: 'Paint Sprayer Pro 650W', category: 'Sprayers', price: 189.00, unit: 'Each' },
+  { code: 'ALM-007', name: 'Roller Cover 9" 3-Pack', category: 'Rollers', price: 14.99, unit: 'Pack' },
+  { code: 'ALM-008', name: 'Painters Tape Blue 48mm', category: 'Prep & Tape', price: 8.50, unit: 'Roll' },
+  { code: 'ALM-009', name: 'Extension Pole 1.2m-2.4m', category: 'Accessories', price: 34.95, unit: 'Each' },
+  { code: 'ALM-010', name: 'Paint Tray Liner 9" 5-Pack', category: 'Accessories', price: 9.99, unit: 'Pack' },
+  { code: 'ALM-011', name: 'Disposable Gloves Box 100', category: 'Protective Gear', price: 22.00, unit: 'Box' },
+  { code: 'ALM-012', name: 'Caulking Gun Heavy Duty', category: 'Accessories', price: 27.50, unit: 'Each' },
+]
+
+export const categories = ['All Categories', 'Brushes', 'Rollers', 'Prep & Tape', 'Protective Gear', 'Sprayers', 'Accessories']
+
 export const customers = [
   { id: 1, name: 'Ridge Field Freight', address: '10 Mackelvie Street, Grey Lynn, Auckland', phone: '093456789', email: 'contact@ridgefield.co.nz', lat: -36.862, lng: 174.745 },
   { id: 2, name: 'Sierra Source Medical', address: '50 Ponsonby Road, Ponsonby, Auckland', phone: '092345678', email: 'info@sierrasource.co.nz', lat: -36.854, lng: 174.748 },
