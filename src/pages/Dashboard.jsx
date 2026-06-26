@@ -43,7 +43,7 @@ function SectionCard({ title, action, actionLabel, children }) {
           )}
         </div>
       )}
-      <div className="px-5 pb-5">{children}</div>
+      <div className={`px-5 pb-5${!(title || action) ? ' pt-5' : ''}`}>{children}</div>
     </div>
   )
 }
@@ -169,7 +169,7 @@ export default function Dashboard() {
 
       {/* Call Plan */}
       <SectionCard>
-        <div className="flex items-center gap-3 mb-4 flex-wrap" style={{ marginTop: -4 }}>
+        <div className="flex items-center gap-3 mb-4 flex-wrap">
           <h2 style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', margin: 0, marginRight: 4 }}>Call Plan</h2>
           {callPlanTabs.map((tab, i) => (
             <button

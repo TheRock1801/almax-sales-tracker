@@ -1,6 +1,6 @@
 export const currentUser = {
-  name: 'Mark Jones',
-  email: 'mark.jones@almax.co.nz',
+  name: 'Brett',
+  email: 'brett@almax.co.nz',
 }
 
 export const tasks = [

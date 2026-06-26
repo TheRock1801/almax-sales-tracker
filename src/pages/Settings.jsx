@@ -66,8 +66,8 @@ export default function Settings() {
         {/* Account */}
         <SectionCard label="Account">
           {[
-            ['Name', 'Mark Jones'],
-            ['Email', 'mark.jones@almax.co.nz'],
+            ['Name', 'Brett'],
+            ['Email', 'brett@almax.co.nz'],
             ['Role', 'Sales Representative'],
             ['Region', 'South Island'],
           ].map(([label, value]) => (
